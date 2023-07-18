@@ -1,19 +1,21 @@
+"use client"
 import clsx from "clsx"
-import { ElementType, FC, PropsWithChildren } from "react"
+import { ElementType, FC, MouseEventHandler, PropsWithChildren } from "react"
 
 interface BoxProps extends PropsWithChildren {
    className?: string
    as?: ElementType
+   onClick?: MouseEventHandler
 }
 
-const Box: FC<BoxProps> = ({children, className, as: Tag = "div", ...props}) => {
+const Box: FC<BoxProps> = ({children, className, as: Tag = "div", onClick = () => {}, ...props}) => {
    const classes = clsx([
       'flex',
       'relative',
       className
    ])
    return (
-      <div className={classes} {...props}>{children}</div>
+      <Tag className={classes} onClick={onClick} {...props}>{children}</Tag>
    )
 }
 
