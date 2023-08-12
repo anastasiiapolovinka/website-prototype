@@ -6,12 +6,16 @@ interface BoxProps extends PropsWithChildren {
    className?: string
    as?: ElementType
    onClick?: MouseEventHandler
+   position?: string
+   role?: string
+   contentEditable?: boolean
+   display?: string
 }
 
-const Box: FC<BoxProps> = ({children, className, as: Tag = "div", onClick = () => {}, ...props}) => {
+const Box: FC<BoxProps> = ({children, display = 'flex', position = 'relative', className, as: Tag = "div", onClick = () => {}, ...props}) => {
    const classes = clsx([
-      'flex',
-      'relative',
+      display,
+      position,
       className
    ])
    return (
